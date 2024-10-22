@@ -11,7 +11,7 @@ const SportsDetail = () => {
     const [loadingTwitter, setLoadingTwitter] = useState(true); // Loading state for Twitter news
     const [error, setError] = useState(null);
     const [twitterError, setTwitterError] = useState(null); // Error state for Twitter news
-    const apiKey = "953d5574b5b3492398349d83ae060fec";
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
     const [sport, setSport] = useState(null);
 
     useEffect(() => {
