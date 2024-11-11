@@ -54,7 +54,9 @@ function App() {
           <Route path="/sports" element={<SportsPage />} /> 
           <Route path="/sports/:sportName" element={<SportsDetail />} />
           <Route path="/searchresult" element={<SearchResults />} />
-         
+         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
       </AppLayout>
     </Router>
