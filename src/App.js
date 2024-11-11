@@ -8,6 +8,9 @@ import SportsDetail from './components/SportDetail';
 import Footer from './components/footer/footer'; 
 import Header from './components/header/header';
 import SearchResults from './components/SearchResults';
+import PrivacyPolicy from './components/footer/privacy/PrivacyPolicy'; // Adjust the path as necessary
+import About from './components/footer/about/About'; // Adjust the path as necessary
+import ContactUs from './components/footer/contactUs/ContactUs'; // Adjust the path as necessary
 
 const AppLayout = ({ children, countryCode }) => {
   const location = useLocation();
