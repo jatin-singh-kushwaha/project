@@ -89,9 +89,15 @@ const ContactUs = () => {
             <p className="contact-info-text">If you have any questions or feedback, feel free to reach out to us at:</p>
 
             {/* Replace anchor tags with buttons styled as links */}
-            <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Email: [Your Contact Email]</button>
-            <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Phone: [Your Phone Number]</button>
-            <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Address: [Your Company Address]</button>
+            <div className="contact-info-item">
+                <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Email: [Your Contact Email]</button>
+            </div>
+            <div className="contact-info-item">
+                <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Phone: [Your Phone Number]</button>
+            </div>
+            <div className="contact-info-item">
+                <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Address: [Your Company Address]</button>
+            </div>
         </div>
     );
 };
