@@ -33,52 +33,52 @@ const SportsDetail = () => {
             }
         };
 
-        const fetchNews = async () => {
-            try {
-                const response = await fetch(
-                    `https://newsapi.org/v2/everything?q=${sportName}&apiKey=${apiKey}`
-                );
-                const data = await response.json();
-                if (data.articles) {
-                    const sortedArticles = data.articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-                    setNews(sortedArticles.slice(0, 10)); // Display only the first 10 articles
-                } else {
-                    setError('No sports news articles available');
-                }
-            } catch (err) {
-                setError('Failed to fetch sports news');
-            }
-        };
+        // const fetchNews = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `https://newsapi.org/v2/everything?q=${sportName}&apiKey=${apiKey}`
+        //         );
+        //         const data = await response.json();
+        //         if (data.articles) {
+        //             const sortedArticles = data.articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+        //             setNews(sortedArticles.slice(0, 10)); // Display only the first 10 articles
+        //         } else {
+        //             setError('No sports news articles available');
+        //         }
+        //     } catch (err) {
+        //         setError('Failed to fetch sports news');
+        //     }
+        // };
 
-        const fetchTwitterTrendingNews = async () => {
-            try {
-                const response = await fetch(
-                    `https://twitter241.p.rapidapi.com/AutoComplete/?q=${sportName}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'X-RapidAPI-Key': 'bc9b35d9a2mshea59a5aa14d93f6p17f52ejsnd4132155a629',
-                            'X-RapidAPI-Host': 'twitter241.p.rapidapi.com'
-                        }
-                    }
-                );
-                const data = await response.json();
-                if (data.topics && data.topics.length > 0) {
-                    setTwitterNews(data.topics);
-                } else {
-                    setTwitterError('No trending news available');
-                }
-            } catch (err) {
-                setTwitterError('Failed to fetch Twitter news');
-            } finally {
-                setLoadingTwitter(false);
-            }
-        };
+        // const fetchTwitterTrendingNews = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `https://twitter241.p.rapidapi.com/AutoComplete/?q=${sportName}`,
+        //             {
+        //                 method: 'GET',
+        //                 headers: {
+        //                     'X-RapidAPI-Key': 'bc9b35d9a2mshea59a5aa14d93f6p17f52ejsnd4132155a629',
+        //                     'X-RapidAPI-Host': 'twitter241.p.rapidapi.com'
+        //                 }
+        //             }
+        //         );
+        //         const data = await response.json();
+        //         if (data.topics && data.topics.length > 0) {
+        //             setTwitterNews(data.topics);
+        //         } else {
+        //             setTwitterError('No trending news available');
+        //         }
+        //     } catch (err) {
+        //         setTwitterError('Failed to fetch Twitter news');
+        //     } finally {
+        //         setLoadingTwitter(false);
+        //     }
+        // };
 
         if (sportName) {
             fetchSportData();
-            fetchNews();
-            fetchTwitterTrendingNews();
+            // fetchNews();
+            // fetchTwitterTrendingNews();
         }
     }, [sportName, apiKey]);
 
