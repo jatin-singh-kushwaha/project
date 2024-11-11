@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import './ContactUs.css';
 
 const ContactUs = () => {
@@ -16,22 +15,32 @@ const ContactUs = () => {
         setError('');
 
         try {
-            await emailjs.send(
-                'service_y6mbqgh', // Replace with your EmailJS service ID
-                'template_gbkdrkb', // Replace with your EmailJS template ID
-                {
-                    from_name: name,
-                    from_email: email,
-                    message: message,
-                    to_email: 'shyammaurya1808@gmail.com', // Replace with admin email
+            const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                'eyp-ep1e52cKVI61P' // Replace with your EmailJS public key
-            );
+                body: JSON.stringify({
+                    service_id: process.env.REACT_APP_SERVICE_ID,
+                    template_id: process.env.REACT_APP_TEMPLATE_ID,
+                    user_id: process.env.REACT_APP_PUBLIC_KEY,
+                    template_params: {
+                        from_name: name,
+                        from_email: email,
+                        message: message,
+                        to_email: 'shyammaurya1808@gmail.com' // Replace with admin email
+                    }
+                })
+            });
 
-            setSuccess(true);
-            setName('');
-            setEmail('');
-            setMessage('');
+            if (response.ok) {
+                setSuccess(true);
+                setName('');
+                setEmail('');
+                setMessage('');
+            } else {
+                throw new Error('Failed to send message.');
+            }
         } catch (err) {
             setError('Failed to send message. Please try again later.');
             console.error('Email sending failed:', err);
@@ -88,8 +97,6 @@ const ContactUs = () => {
             </form>
             <h2 className="contact-info-heading">Contact Information</h2>
             <p className="contact-info-text">If you have any questions or feedback, feel free to reach out to us at:</p>
-
-            {/* Replace anchor tags with buttons styled as links */}
             <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Email: [Your Contact Email]</button>
             <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Phone: [Your Phone Number]</button>
             <button onClick={(e) => e.preventDefault()} className="contact-info-text link-style">Address: [Your Company Address]</button>
